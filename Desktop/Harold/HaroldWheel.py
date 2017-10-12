@@ -11,7 +11,7 @@ io.setup(wheelpin, io.IN, pull_up_down=io.PUD_UP)
 
 # Circumferance of Harold's wheel
 # 18cm diameter * PI = 56.52 cm = 0.5652 m
-wheelsize = 0.5652
+wheelsize = 0.0005652
 
 # Number of wheel rotations
 rotations = 0
@@ -37,7 +37,8 @@ while True:
             speed = calculateSpeed(spintime)
             distance = distance + wheelsize
             rotations += 1
-            print(datetime.datetime.now, distance, speed, rotations)
+            print (distance, 'km', speed, 'km/h', rotations, 'rotations')
+            time.sleep(0.1)
 
 
         
