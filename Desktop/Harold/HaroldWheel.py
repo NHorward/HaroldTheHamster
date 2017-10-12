@@ -1,5 +1,6 @@
 import time
 import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
 import RPi.GPIO as io
 io.setmode(io.BCM)
 
@@ -22,6 +23,15 @@ distance = 0
 # Set the starttime to now
 starttime = datetime.datetime.now()
 
+# Setup the scheduler to send messages to the IoT Service every hour
+scheduler = BackgroundScheduler()
+@scheduler.sendMessage('interval', seconds=60)
+
+
+# Send message
+def sendMessage():
+    print("Hello, I'm a message!")
+    print ('Minute Update', distance, 'km', speed, 'km/h', rotations, 'rotations')
 
 # Function to calculate the current speed of the hamsterwheel
 def calculateSpeed(spintime):
@@ -41,4 +51,4 @@ while True:
             time.sleep(0.1)
 
 
-        
+
